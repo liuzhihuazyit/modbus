@@ -453,8 +453,8 @@ func (mb *client) send(request *ProtocolDataUnit) (response *ProtocolDataUnit, e
 	}
 	// Check correct function code returned (exception)
 	if response.FunctionCode != request.FunctionCode {
-		err = responseError(response)
-		return
+		// err = responseError(response)
+		// return
 	}
 	if response.Data == nil || len(response.Data) == 0 {
 		// Empty response
