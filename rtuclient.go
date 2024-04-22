@@ -94,10 +94,10 @@ func (mb *rtuPackager) Decode(adu []byte) (pdu *ProtocolDataUnit, err error) {
 	var crc crc
 	crc.reset().pushBytes(adu[0 : length-2])
 	checksum := uint16(adu[length-2])<<8 | uint16(adu[length-1])
-	// if checksum != crc.value() {
+	if checksum != crc.value() {
 	// 	err = fmt.Errorf("modbus: response crc '%v' does not match expected '%v'", checksum, crc.value())
 	// 	return
-	// }
+	}
 	// Function code & data
 	pdu = &ProtocolDataUnit{}
 	pdu.FunctionCode = adu[1]
